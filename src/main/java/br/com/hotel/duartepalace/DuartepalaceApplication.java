@@ -9,5 +9,5 @@ public class DuartepalaceApplication {
     public static void main(String[] args) {
         SpringApplication.run(DuartepalaceApplication.class, args);
     }
-    Usuario usuario = new Usuario();
+
 }
