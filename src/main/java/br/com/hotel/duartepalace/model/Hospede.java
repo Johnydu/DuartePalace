@@ -9,10 +9,10 @@ import org.hibernate.validator.constraints.br.CPF;
 @Entity
 @Getter
 @Setter
-@Table(name = "cliente")
+@Table(name = "Hospede")
 @NoArgsConstructor
 @AllArgsConstructor
-public class Cliente {
+public class Hospede {
 
     @Id
     @GeneratedValue(strategy =  GenerationType.IDENTITY)
