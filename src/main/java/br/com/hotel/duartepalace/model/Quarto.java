@@ -6,12 +6,14 @@ import lombok.*;
 
 import java.math.BigDecimal;
 
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
 @Table(name = "quarto")
 @Getter
 @Setter
+@EqualsAndHashCode(of = "id")
 public class Quarto {
 
     @Id
@@ -19,17 +21,22 @@ public class Quarto {
     private Long id;
 
     @Column(nullable = false,unique = true)
-    private Integer numeroQuarto;
+    private String numero;
 
     @NotNull
-    private BigDecimal valorDiaria;
+    @Column(name = "tipo",nullable = false)
+    private String tipo;
 
+    @NotNull
+    @Column(name = "capacidade", nullable = false)
+    private Integer capacidade;
 
-    @Enumerated(EnumType.STRING)
-    private TipoQuarto tipoQuarto;
+    @NotNull
+    @Column(name = "preco_diaria", nullable = false)
+    private BigDecimal precoDiaria;
 
-    @Enumerated(EnumType.STRING)
-    private StatusQuarto statusQuarto;
-
+    @NotNull
+    @Column(name = "em_manutencao")
+    private Boolean emManutencao;
 
 }
