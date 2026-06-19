@@ -1,19 +1,44 @@
 package br.com.hotel.duartepalace.model;
 
+import br.com.hotel.duartepalace.model.enums.RoleUsuario;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotNull;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import jakarta.validation.constraints.NotBlank;
+import lombok.*;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
+import java.util.Collection;
+import java.util.List;
 
 @Entity
 @Setter
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "Usuario")
-public class Usuario {
+@EqualsAndHashCode(of = "id")
+@Table(name = "usuario")
+
+public class Usuario implements UserDetails {
+
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return List.of(new SimpleGrantedAuthority(role.name()));
+    }
+
+    @Override
+    public boolean isAccountNonExpired() { return true; }
+
+    @Override
+    public boolean isAccountNonLocked() { return true; }
+
+    @Override
+    public boolean isCredentialsNonExpired() { return true; }
+
+    @Override
+    public boolean isEnabled() { return true; }
+
 
 
     @Id
@@ -21,13 +46,14 @@ public class Usuario {
     private Long id;
 
 
-    @NotNull
+    @NotBlank
     private String username;
 
-    @NotNull
+    @NotBlank
     private String password;
 
 
-    @NotNull
-    private String role;
+
+    @Enumerated(EnumType.STRING)
+    private RoleUsuario role;
 }

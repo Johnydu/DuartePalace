@@ -25,12 +25,12 @@ public class Hospede {
     private Long id;
 
     @NotNull
-    @Column(name = "hospede_nome", nullable = false)
+    @Column(name = "nome", nullable = false)
     private String nome;
 
     @NotNull
     @CPF(message = "CPF inválido")
-    @Column(name="hospede_cpf",nullable = false,unique = true)
+    @Column(name="cpf",nullable = false,unique = true)
     private String cpf;
 
     @NotNull
@@ -42,7 +42,7 @@ public class Hospede {
 
     @NotNull
     @Email(message = "email invalido")
-    @Column(name = "hospede_email",nullable = false)
+    @Column(name = "email",nullable = false)
     private String email;
 
     @OneToMany(mappedBy = "hospede")

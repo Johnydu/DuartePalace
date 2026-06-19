@@ -14,17 +14,22 @@ public class SecurityConfiguration {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 
         http.authorizeHttpRequests(auth -> auth
+                        .requestMatchers("/login", "/css/**", "/js/**", "/images/**").permitAll()
                         .requestMatchers("/admin/**").hasRole("ADMIN")
-                        .requestMatchers("/user/**").hasRole("USER")
+                        .requestMatchers("/recepcionista/**").hasRole("RECEPCIONISTA")
                         .anyRequest().authenticated()
                 )
                 .formLogin(form -> form
                         .loginPage("/login")
+                        .defaultSuccessUrl("/dashboard", true)
                         .permitAll()
                 )
-                .logout(logout -> logout.permitAll());
+                .logout(logout -> logout
+                        .logoutUrl("/logout")
+                        .logoutSuccessUrl("/login?logout")
+                        .permitAll()
+                );
 
-        // ✅ precisa retornar o objeto configurado
         return http.build();
     }
 
