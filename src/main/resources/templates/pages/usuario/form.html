@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-br"
+        xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Novo Usuário</title>
+</head>
+<body>
+
+<h1>Cadastrar Usuário</h1>
+
+<form th:action="@{/admin/usuario}" th:object="${usuario}" method="post">
+
+    <div>
+        <label>Username</label>
+        <input type="text" th:field="*{username}" />
+    </div>
+
+    <div>
+        <label>Senha</label>
+        <input type="password" th:field="*{password}" />
+    </div>
+
+    <div>
+        <label>Perfil</label>
+        <select th:field="*{role}">
+            <option th:each="r : ${T(br.com.hotel.duartepalace.model.enums.RoleUsuario).values()}"
+                    th:value="${r}"
+                    th:text="${r}">
+            </option>
+        </select>
+    </div>
+
+    <button type="submit">Cadastrar</button>
+
+</form>
+
+</body>
+</html>
