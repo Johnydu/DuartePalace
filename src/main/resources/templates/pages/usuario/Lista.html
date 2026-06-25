@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Usuários</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+<div class="pagina-interna">
+
+    <h1>Usuários</h1>
+
+    <div th:if="${sucesso}"
+         class="sucesso-geral"
+         th:text="${sucesso}">
+    </div>
+
+    <div th:if="${erroNegocio}"
+         class="erro-geral"
+         th:text="${erroNegocio}">
+    </div>
+
+    <a th:href="@{/admin/usuario/novo}"
+       class="btn-novo">
+        + Novo usuário
+    </a>
+
+    <table>
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Username</th>
+            <th>Perfil</th>
+            <th>Ações</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr th:each="usuario : ${ListaUsuarioDTO}">
+
+            <td th:text="${usuario.id}"></td>
+
+            <td th:text="${usuario.username()}"></td>
+
+            <td th:text="${usuario.role()}"></td>
+
+            <td class="acoes">
+
+                <a class="btn-editar"
+                   th:href="@{/admin/usuario/{id}/editar(id=${usuario.id()})}">
+                    Editar
+                </a>
+
+                <form th:action="@{/admin/usuario/{id}/excluir(id=${usuario.id()})}"
+                      method="post"
+                      onsubmit="return confirm('Tem certeza que deseja excluir o usuário?');">
+
+
+                <button type="submit"
+                            class="btn-excluir">
+                        Excluir
+                    </button>
+                    <div th:if="${mensagemSucesso}" class="alert-sucesso">
+                        <p th:text="${mensagemSucesso}"></p>
+                    </div>
+                </form>
+
+            </td>
+
+        </tr>
+        </tbody>
+    </table>
+
+</div>
+
+</body>
+</html>

@@ -4,7 +4,7 @@ import br.com.hotel.duartepalace.model.enums.RoleUsuario;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
-public record UsuarioDto(
+public record UsuarioDTO(
 
         @NotBlank(message = "Campo obrigatório")
         String username,

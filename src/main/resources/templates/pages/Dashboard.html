@@ -2,10 +2,16 @@
 <html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
     <title>Dashboard</title>
 </head>
+
 <body>
+
 <h1>Bem-vindo, você está logado!</h1>
 <a th:href="@{/admin/usuario/novo}">Cadastrar novo usuário</a>
+<a th:href="@{/admin/usuario/listaUsuario}">Lista de usuários</a>
+
 </body>
+
 </html>
